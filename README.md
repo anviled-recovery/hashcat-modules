@@ -1,4 +1,4 @@
-# hashcat-modules-attic
+# hashcat-modules
 
 Custom hashcat modules that were **dropped from the [anviled recovery service](https://github.com/anviled-recovery/extraction-tools)** because they break its core safety invariant:
 
