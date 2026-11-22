@@ -1,6 +1,6 @@
 # hashcat-modules
 
-Custom hashcat modules for wallet formats whose hash line contains the **entire encrypted secret** — not just a verification sample. These modules are not part of the [Anviled recovery service](https://github.com/anviled-recovery/extraction-tools), which accepts only seedless hashes.
+Custom hashcat modules for wallet formats whose hash line contains the **entire encrypted secret** — not just a verification sample.
 
 They are published for **local password recovery on your own files**.
 
