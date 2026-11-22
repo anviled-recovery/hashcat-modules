@@ -14,6 +14,7 @@ A hash produced by these modules is the complete encrypted vault. Before the pas
 | --- | --- | --- |
 | `90020` `$wasabi$` | [Wasabi (BIP38)](wasabi/) | The line is the whole BIP38 string — the full encrypted private key. |
 | `90037` `$xverse-a$` | [Xverse legacy era A](xverse-era-a/) | The verifier needs the complete ciphertext of the seed entropy, so the line is the full encrypted mnemonic. |
+| `90036` `$xverse$` (12-word era B) | [Xverse legacy era A](xverse-era-a/) | A 12-word SeedVault entropy is exactly 32 hex chars, so the sample line is the full encrypted seed. |
 
 Each directory contains the module source (`.c` + `.cl`), a matching extractor, and its own README.md.
 

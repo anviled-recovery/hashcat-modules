@@ -8,11 +8,14 @@ argon2i(password, utf8(localStorage salt hex-string), t=3, m=65536, p=4, 48)
 blob = hex(salt16 || HMAC-SHA256(macKey, salt16 || ct) || ct)
 ```
 
-The stored HMAC is the only verifier, and computing it requires the **complete** ciphertext — which is the full bip39 entropy of the mnemonic. So the `$xverse-a$` hash line is the entire encrypted seed, and after a successful crack it is fully exposed. That is why this mode lives here and not in the recovery service. (The newer Xverse eras B and C *are* seedless and are supported by the service as mode 90036.)
+The stored HMAC is the only verifier, and computing it requires the **complete** ciphertext — which is the full bip39 entropy of the mnemonic. So the `$xverse-a$` hash line is the entire encrypted seed, and after a successful crack it is fully exposed. That is why this mode lives here and not in the recovery service.
+
+**12-word SeedVaults (era B) are here too.** A 12-word mnemonic is 128 bits of entropy, which is exactly 32 hex characters - so the 32-byte ciphertext sample in the service's `$xverse$` line would be the *whole* encrypted seed, not a sample. The service's extractor skips those wallets; crack them locally with `module_90036.c` (also included, the same module the service uses for 24-word SeedVaults and era C, which *are* safe).
 
 ## Files
 
-- `module_90037.c`, `m90037-pure.cl` — the hashcat module (hashcat v8.0.0+ required, argon2 framework).
+- `module_90037.c`, `m90037-pure.cl` — the era-A hashcat module (hashcat v8.0.0+ required, argon2 framework).
+- `module_90036.c`, `m90036-pure.cl` — the era-B/C module, for local cracking of 12-word SeedVault lines.
 - `extractor.py` — the Xverse extractor (this copy still emits the legacy `$xverse-a$` lines into `xverse-a-hash.txt`; it also emits the seedless `$xverse$` b/c lines into `xverse-hash.txt`, which the service accepts).
 
 ## Usage
