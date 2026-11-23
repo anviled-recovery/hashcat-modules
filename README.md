@@ -1,12 +1,12 @@
 # hashcat-modules
 
-Custom hashcat modules for wallet formats whose hash line contains the **entire encrypted secret** — not just a verification sample.
+Custom hashcat kernels for wallet formats whose hash line contains the **entire encrypted secret** — not just a verification sample.
 
 They are published for **local password recovery on your own files**.
 
 ## Security
 
-A hash produced by these modules is the complete encrypted vault. Before the password is cracked it reveals nothing; **after a successful crack it reveals the whole seed or private key to whoever holds the line**. That is why the service does not accept such hashes, and why you should never send one to any third party. Extract and crack on your own hardware only.
+A hash produced by these modules is the complete encrypted vault. Before the password is cracked it reveals nothing; **after a successful crack it reveals the whole seed or private key to whoever holds the line**. That is why our service does not accept such hashes, and why you should never send one to any third party. Extract and crack on your own hardware only.
 
 ## Available modules
 
@@ -33,7 +33,7 @@ Each directory contains the module source (`.c` + `.cl`), a matching extractor, 
 4. Crack the hash file locally:
 
    ```
-   ./hashcat -m 900XX hash-file.txt your-dictionary.txt
+   ./hashcat -m 900XX hash-file.txt your-dictionary.txt -r rules/dive.rule -w 3 -S
    ```
 
 Windows, macOS and Linux are supported for the extractors (Python 3.8+, no third-party packages). GPU or CPU for hashcat.
